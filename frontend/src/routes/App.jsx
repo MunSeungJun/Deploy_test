@@ -1,19 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Outlet, NavLink } from 'react-router-dom';
 import { Container, Row,Col } from 'react-bootstrap';
 
 const App = () => {
-  const [renderKey, setRenderKey] = useState(0);
-
-  useEffect(() => {
-    const timestamp = new Date().getTime();
-    localStorage.setItem("reload", timestamp.toString());
-
-    setRenderKey(timestamp);
-  }, []);
+  
   return (
     <>
-      <header className='border-bottom' key={renderKey}>
+      <header className='border-bottom'>
         <Container>
           <Row className="p-5">
               <div className='col-4 fs-1 fw-bold'>WP ERP</div>
