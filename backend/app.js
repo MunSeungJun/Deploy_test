@@ -1,4 +1,5 @@
 import express from "express";
+import serverless from "serverless-http";
 import cors from "cors";
 import { readUsers, readSelectUsers } from "./crud-read.js";
 import { createUsers } from "./crud-create.js";
@@ -72,6 +73,6 @@ app.delete("/delete/:id", async (req, res) => {
   }
 });
 
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
-});
+export default app
+export const handler = serverless(app);
+
