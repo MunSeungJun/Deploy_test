@@ -2,6 +2,6 @@
 
 {
     "rewrites": [
-      { "source": "/(.*)", "destination": "https://hellomongodb.vercel.app/" }
+      { "source": "/(.*)", "destination": "frontend/index.html" }
     ]
   }
