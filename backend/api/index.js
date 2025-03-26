@@ -1,26 +1,13 @@
 import { MongoClient } from "mongodb";
-import Cors from "cors";
 
-// CORS 미들웨어 생성
-const cors = Cors({
-  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-  origin: "*",
-});
 
-// CORS 미들웨어 실행 함수
-function runMiddleware(req, res, fn) {
-  return new Promise((resolve, reject) => {
-    fn(req, res, (result) => {
-      if (result instanceof Error) {
-        return reject(result);
-      }
-      return resolve(result);
-    });
-  });
-}
+
+
+
 
 export default async function handler(req, res) {
-  await runMiddleware(req, res, cors); // CORS 적용
+    res.setHeader("Access-Control-Allow-Origin", "*"); // 모든 도메인 허용 (*)
+    res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
   const uri =
     "mongodb+srv://vercel-admin-user:8FPLjbXwx9znESJY@cluster0.jzdiw.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
   const client = new MongoClient(uri);
