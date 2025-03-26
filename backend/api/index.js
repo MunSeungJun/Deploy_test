@@ -1,40 +1,44 @@
 import { MongoClient } from "mongodb";
 
 export default async function handler(req, res) {
-    res.setHeader('Access-Control-Allow-Credentials', true)
-  res.setHeader('Access-Control-Allow-Origin', '*')
+  res.setHeader("Access-Control-Allow-Credentials", true);
+  res.setHeader("Access-Control-Allow-Origin", "*");
   // another common pattern
   // res.setHeader('Access-Control-Allow-Origin', req.headers.origin);
-  res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT')
   res.setHeader(
-    'Access-Control-Allow-Headers',
-    'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
-  )
-  if (req.method === 'OPTIONS') {
-    res.status(200).end()
-    return
+    "Access-Control-Allow-Methods",
+    "GET,OPTIONS,PATCH,DELETE,POST,PUT"
+  );
+  res.setHeader(
+    "Access-Control-Allow-Headers",
+    "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version"
+  );
+  if (req.method === "OPTIONS") {
+    res.status(200).end();
+    return;
   }
-
- 
-  const client = new MongoClient(process.env.MONGODB_URI);
+  
+  // process.env.MONGODB_URI
+  const client = new MongoClient(
+    "mongodb+srv://vercel-admin-user-67e3b658d37b8f5cdcd41f26:jGVPZygPqREYvdHV@cluster0.jzdiw.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
+  );
   await client.connect();
   const db = client.db("hr");
   const coll = db.collection("employees");
 
   try {
     if (req.method === "GET") {
-        const {type, id} = req.query
-        if( type === 'list') {
-            const cursor = coll.find();
-            const users = await cursor.toArray();
-            res.status(200).json(users);
-        }
-        if ( type === 'select') {
-            const cursor = coll.find({employee_id: id});
-            const users = await cursor.toArray();
-            res.status(200).json(users);
-        }
-      
+      const { type, id } = req.query;
+      if (type === "list") {
+        const cursor = coll.find();
+        const users = await cursor.toArray();
+        res.status(200).json(users);
+      }
+      if (type === "select") {
+        const cursor = coll.find({ employee_id: id });
+        const users = await cursor.toArray();
+        res.status(200).json(users);
+      }
     }
     if (req.method === "POST") {
       coll.insertOne(req.body);
@@ -43,13 +47,13 @@ export default async function handler(req, res) {
       });
     }
     if (req.method === "PUT") {
-      coll.updateOne({ employee_id: req.query.id }, {$set: req.body});
+      coll.updateOne({ employee_id: req.query.id }, { $set: req.body });
       res.status(200).json({
         message: "success",
       });
     }
     if (req.method === "DELETE") {
-      coll.deleteOne({ employee_id: req.query.id});
+      coll.deleteOne({ employee_id: req.query.id });
       res.status(200).json({
         message: "success",
       });
