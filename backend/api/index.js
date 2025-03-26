@@ -1,7 +1,7 @@
 import { MongoClient } from "mongodb";
 
 export default async function handler(req, res) {
-  const uri = "mongodb+srv://demouser:demo1234@cluster0.jzdiw.mongodb.net/";
+  const uri = "mongodb+srv://vercel-admin-user:8FPLjbXwx9znESJY@cluster0.jzdiw.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
   const client = new MongoClient(uri);
 
   await client.connect();
