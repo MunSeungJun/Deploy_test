@@ -13,7 +13,7 @@ const Home = () => {
         <button className="btn">Get Started</button>
         <button className="btn">Demo</button>
       </div>
-      <img src="https://deploy-test-frontend-one.vercel.app//landing-img.png" className='w-100' alt="" />
+      <img src="http://deploy-test-frontend-one.vercel.app//landing-img.png" className='w-100' alt="" />
     </div>
   );
 };
