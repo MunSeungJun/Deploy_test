@@ -28,7 +28,8 @@ export default async function handler(req, res) {
       });
     }
     if (req.method === "DELETE") {
-      coll.deleteOne({ employee_id: req.params.id });
+        const {employee_id} = req.body
+      coll.deleteOne({ employee_id: employee_id   });
       res.status(200).json({
         message: "success",
       });
