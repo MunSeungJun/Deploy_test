@@ -1,6 +1,6 @@
 import { MongoClient } from "mongodb";
 
-export default async function handler(req, res) {
+export default async function handler(req, res) {  
   const uri = "mongodb+srv://vercel-admin-user:8FPLjbXwx9znESJY@cluster0.jzdiw.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
   const client = new MongoClient(uri);
 
@@ -34,8 +34,8 @@ export default async function handler(req, res) {
     }
   } catch (e) {
     console.log(e);
-    res.status(501).json({
-      message: "fail",
+    res.status(500).json({
+      message: "실패",
     });
   }
 }
