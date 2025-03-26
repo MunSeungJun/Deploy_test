@@ -23,9 +23,18 @@ export default async function handler(req, res) {
 
   try {
     if (req.method === "GET") {
-      const cursor = coll.find();
-      const users = await cursor.toArray();
-      res.status(200).json(users);
+        const {type, id} = req.query
+        if( type === 'list') {
+            const cursor = coll.find();
+            const users = await cursor.toArray();
+            res.status(200).json(users);
+        }
+        if ( type === 'select') {
+            const cursor = coll.find({employee_id: id});
+            const users = await cursor.toArray();
+            res.status(200).json(users);
+        }
+      
     }
     if (req.method === "POST") {
       coll.insertOne(req.body);

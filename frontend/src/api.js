@@ -2,16 +2,16 @@ import axios from 'axios';
 
 export async function getData() {
   try {
-    const response = await axios.get('https://deploy-test-backend.vercel.app/api');
+    const response = await axios.get('https://deploy-test-backend.vercel.app/api/?type=list');
     return response.data;
   } catch (err) {
     console.log(err);
   }
 }
 
-export async function getSeletData() {
+export async function getSeletData(id) {
   try {
-    const response = await axios.get(`https://deploy-test-backend.vercel.app/api`);
+    const response = await axios.get(`https://deploy-test-backend.vercel.app/api/?type=select?id=${id}`);
     return response.data;
   } catch (e) {
     console.log(e);
