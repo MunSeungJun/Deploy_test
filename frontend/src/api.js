@@ -60,7 +60,7 @@ export async function updateData(data) {
 
 export async function deleteData(id) {
   axios
-    .delete(`https://deploy-test-backend.vercel.app/api/index.js/${id}`)
+    .delete(`https://deploy-test-backend.vercel.app/api/index.js?id=${id}`)
     .then(function (response) {
       console.log(response);
     })
