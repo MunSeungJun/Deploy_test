@@ -11,7 +11,7 @@ export async function getData() {
 
 export async function getSeletData(id) {
   try {
-    const response = await axios.get(`https://deploy-test-backend.vercel.app/api/?type=select?id=${id}`);
+    const response = await axios.get(`https://deploy-test-backend.vercel.app/api/?type=select&id=${id}`);
     return response.data;
   } catch (e) {
     console.log(e);
