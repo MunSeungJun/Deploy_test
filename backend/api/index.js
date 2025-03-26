@@ -31,7 +31,7 @@ export default async function handler(req, res) {
       });
     }
     if (req.method === "PUT") {
-      coll.updateOne({ employee_id: req.params.id }, req.body);
+      coll.updateOne({ employee_id: req.query.id }, req.body);
       res.status(200).json({
         message: "success",
       });

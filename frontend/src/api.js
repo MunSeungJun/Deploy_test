@@ -38,8 +38,8 @@ export async function createData(data) {
     });
 }
 
-export async function updateData(data) {
-  axios.put(`https://deploy-test-backend.vercel.app/api/index.js`,{
+export async function updateData(id, data) {
+  axios.put(`https://deploy-test-backend.vercel.app/api/index.js?id=${id}`,{
     employee_id: data.get('employee_id'),
       last_name: data.get('last_name'),
       first_name: data.get('first_name'),
