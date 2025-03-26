@@ -11,9 +11,8 @@ export default async function handler(req, res) {
     'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
   )
 
-  const uri =
-    "mongodb+srv://vercel-admin-user:8FPLjbXwx9znESJY@cluster0.jzdiw.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
-  const client = new MongoClient(uri);
+ 
+  const client = new MongoClient(process.env.MONGODB_URI);
   await client.connect();
   const db = client.db("hr");
   const coll = db.collection("employees");
