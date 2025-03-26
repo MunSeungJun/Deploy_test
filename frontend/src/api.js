@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export async function getData() {
   try {
-    const response = await axios.get('https://deploy-test-backend.vercel.app/api/index.js');
+    const response = await axios.get('https://deploy-test-backend.vercel.app/api');
     return response.data;
   } catch (err) {
     console.log(err);
@@ -11,7 +11,7 @@ export async function getData() {
 
 export async function getSeletData() {
   try {
-    const response = await axios.get(`https://deploy-test-backend.vercel.app/api/index.js`);
+    const response = await axios.get(`https://deploy-test-backend.vercel.app/api`);
     return response.data;
   } catch (e) {
     console.log(e);
@@ -20,7 +20,7 @@ export async function getSeletData() {
 
 export async function createData(data) {
   axios
-    .post('https://deploy-test-backend.vercel.app/api/index.js', {
+    .post('https://deploy-test-backend.vercel.app/api', {
       employee_id: data.get('employee_id'),
       last_name: data.get('last_name'),
       first_name: data.get('first_name'),
@@ -39,7 +39,7 @@ export async function createData(data) {
 }
 
 export async function updateData(id, data) {
-  axios.put(`https://deploy-test-backend.vercel.app/api/index.js?id=${id}`,{
+  axios.put(`https://deploy-test-backend.vercel.app/api/?id=${id}`,{
     employee_id: data.get('employee_id'),
       last_name: data.get('last_name'),
       first_name: data.get('first_name'),
@@ -60,7 +60,7 @@ export async function updateData(id, data) {
 
 export async function deleteData(id) {
   axios
-    .delete(`https://deploy-test-backend.vercel.app/api/index.js?id=${id}`)
+    .delete(`https://deploy-test-backend.vercel.app/api/?id=${id}`)
     .then(function (response) {
       console.log(response);
     })
