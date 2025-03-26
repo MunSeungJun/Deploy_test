@@ -1,0 +1,35 @@
+import { MongoClient } from "mongodb";
+
+export default async function handler(req, res) {
+  const uri = "mongodb+srv://demouser:demo1234@cluster0.jzdiw.mongodb.net/";
+  const client = new MongoClient(uri);
+
+  await client.connect();
+  const db = client.db("hr");
+  const coll = db.collection("employees");
+
+  try {
+    if (req.method === "GET") {
+      const cursor = coll.find({ employee_id: req.params.id });
+      const users = await cursor.toArray();
+      return users;
+    }
+
+    if (req.method === "POST") {
+      coll.insertOne(req.body);
+    }
+
+    if (req.method === "PUT") {
+        coll.updateOne({employee_id: req.params.id}, req.body)
+    }
+
+    if (req.method === "DELETE") {
+        coll.deleteOne({ employee_id: req.params.id })
+    }
+  } catch (e) {
+    console.log(e);
+    res.status(501).json({
+      message: "fail",
+    });
+  }
+}
